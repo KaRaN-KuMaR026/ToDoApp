@@ -137,6 +137,30 @@ public class TaskManager {
         System.out.println("Task with id " + id + " deleted.");
     }
 
+    public void filterTasks() {
+        System.out.print("Enter filter type (completed/pending): ");
+        String type = in.nextLine().toLowerCase();
+        boolean status;
+        if (type.equals("completed")) {
+            status = true;
+        } else if (type.equals("pending")) {
+            status = false;
+        } else {
+            System.out.println("Invalid filter type.");
+            return;
+        }
+
+        System.out.println("\n--------------------------------------------------------------------------------");
+        System.out.printf("%-6s %-20s %-45s %-12s %-10s\n", "ID", "Name", "Description", "Due Date","Status");
+        System.out.println("--------------------------------------------------------------------------------");
+
+        for (Task task : taskList) {
+            if (task.getCompleted() == status) {
+                System.out.printf("%-6d %-20s %-25s %-12s %-10s\n", task.getTaskId(), task.getName(), task.getDescription(), task.getDueDate(),task.getCompleted() ? "Completed" : "Pending");
+            }
+        }
+    }
+
     private Task findTaskByID(int id) {
         for(Task task: taskList) {
             if(task.getTaskId() == id) {
