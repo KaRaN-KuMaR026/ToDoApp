@@ -44,7 +44,7 @@ public class Main {
                     break;
 
                 case 6 :
-                    System.out.println("6 entered");
+                    manager.filterTasks();
                     break;
 
                 case 0 :
